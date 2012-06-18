@@ -1,0 +1,20 @@
+{
+  "manifest_version": 2,
+  "name" : "Videohub",
+  "version" : "0.2",  
+  "description" : "Videohub",
+  "background": {    
+    "scripts": ["siteconf.js", "background.js"]
+  },
+  "permissions" : [
+    "tabs", "*://*/*", "contextMenus"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["*://*/*"],
+      "js": ["res/videohub_page.js"],
+      "all_frames" : true
+    }
+  ],
+  "options_page": "options.html"
+}
