@@ -19,16 +19,12 @@
 			<legend>添加搜索:</legend>
 			<ol id="sitelist">
 			</ol>
-			<button type="submit" id="submit">提交</button>
+			<button type="button" id="submit">提交</button>
 		</fieldset>
 		<textarea id="temp">
 			<li>
 				<input name="name" placeholder="网站名字" style="width:20%" value="$name"/>
-				<input name="url" placeholder="搜索结果url，搜索词用“%s”替代" style="width:50%" value="$url" />
-				<select name="replace">
-					<option value="url" $urls_elected>链接</option>
-					<option value="name" $name_selected>文本</option>
-				</select>
+				<input name="url" placeholder="搜索结果url，搜索词用“%s”替代，资源地址url用“%l”替代" style="width:50%" value="$url" />
 			</li>
 		</textarea>
 	</form>

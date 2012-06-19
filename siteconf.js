@@ -1,7 +1,7 @@
 var siteconf = {
 	'douban'  : 'http://movie.douban.com/subject_search?cat=1002&search_text=%s',
-	'xunlei'  : 'http://dynamic.lixian.vip.xunlei.com/user_task?userid=%u&furl=%s',
-	'qq'      : 'http://lixian.qq.com/main.html?url=%s',
+	'xunlei'  : 'http://dynamic.lixian.vip.xunlei.com/user_task?userid=%u&furl=%l',
+	'qq'      : 'http://lixian.qq.com/main.html?url=%l',
 	'shooter' : 'http://shooter.cn/search/%s/'
 }
 
@@ -22,6 +22,8 @@ chrome.extension.onMessage.addListener(function(message, sender, sendResponse) {
 });
 
 /*默认其他站*/
+var siteDefault = JSON.parse(localStorage.getItem('siteDatas') || '[]');
+/*
 var siteDefault = [
 	{
 		'name' : 'v.360.cn',
@@ -34,3 +36,4 @@ var siteDefault = [
 		'replace' : 'name'
 	}
 ]
+*/

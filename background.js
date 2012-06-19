@@ -13,41 +13,30 @@ var videohubContextMenusId = chrome.contextMenus.create({
 }, function(){
     /*默认子菜单*/
     var items = [
-        {
+        {               
             title : 'Search from Douban',
-            site : {
-                name : 'douban',
-                replace : 'name'
-            }
+            url : siteconf.douban,
         },
         {
             title : 'Download with Xunlei',
-            site : {
-                name : 'xunlei',
-                replace : 'url'
-            }
+            url : siteconf.xunlei
         },
         {
             title : 'Download with qq',
-            site : {
-                name : 'qq',
-                replace : 'url'
-            }
+            url : siteconf.qq
         },
         {
             title : 'Search subtitle in Shooter',
-            site : {
-                name : 'shooter',
-                replace : 'name'
-            }
+            url : siteconf.shooter
         }
     ];
 
     /*跳转*/
-    var jumpTo = function(info, siteUrl, r){
+    var jumpTo = function(info, siteUrl){
         var url = info.linkUrl || info.selectionText,
             name = info.selectionText || G.nameText;        
-        var jumpUrl = siteUrl.replace('%s', encodeURIComponent('url' == r? url : name));                
+        var jumpUrl = siteUrl.replace('%s', encodeURIComponent(name)).replace('%l', encodeURIComponent(url));
+        console.log(jumpUrl);
         chrome.tabs.create({url : jumpUrl});
     }
 
@@ -58,7 +47,7 @@ var videohubContextMenusId = chrome.contextMenus.create({
             title : item.title,
             parentId : videohubContextMenusId,
             onclick : function(info, tab){
-                jumpTo(info, siteconf[item.site.name], item.site.replace);
+                jumpTo(info, item.url);
             }
         });
     });
@@ -75,7 +64,7 @@ var videohubContextMenusId = chrome.contextMenus.create({
             title : 'Search from ' + item.name,
             parentId : videohubContextMenusId,
             onclick : function(info, tab){
-                jumpTo(info, item.url, item.replace);
+                jumpTo(info, item.url);
             }
         });
     });    

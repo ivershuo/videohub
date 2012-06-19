@@ -4,10 +4,23 @@ document.addEventListener("DOMContentLoaded", function(){
 	}
 
 	/*存储*/
-	$('f').addEventListener('submit', function(){
-		var sites = $.getElementsByTagName('li');
-		sites.
-		localStorage.setItem('x', 'y');		
+	$('submit').addEventListener('click', function(){
+		var sites = $('sitelist').getElementsByTagName('li'),
+			sites2db = [];
+		[].forEach.call(sites, function(site){
+			var name = site.querySelector('input[name=name]').value,
+				url  = site.querySelector('input[name=url]').value;
+			if(name && url){
+				var siteData = {
+					'name': name,
+					'url' : url,
+				}
+				sites2db.push(siteData);
+			}			
+		});
+		console.log(sites2db);
+		localStorage.setItem('siteDatas', JSON.stringify(sites2db));
+		window.location.reload();
 	});
 
 	/*写到页面*/
@@ -16,7 +29,8 @@ document.addEventListener("DOMContentLoaded", function(){
 	siteDefault.forEach(function(site){
 		var _html_li = tmp.replace('$name', site.name)
 						  .replace('$url', site.url)
-		_html.push(_html_li);		
+		_html.push(_html_li);
 	});
+	_html.push(tmp.replace(/\$\w+/g, ''));
 	$('sitelist').innerHTML = _html.join('');
 });
