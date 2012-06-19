@@ -1,38 +1,64 @@
 var G = {};
+var S = {
+    get : function(k){
+        return localStorage.getItem(k) || '';
+    },
+    set : function(k, v){
+        localStorage.setItem(k, v);
+    }
+}
 var videohubContextMenusId = chrome.contextMenus.create({
     title : 'Videohub',
     contexts : ['selection', 'link']
 }, function(){
-    /*添加子菜单*/
+    /*默认子菜单*/
     var items = [
         {
             title : 'Search from Douban',
-            func : function(url, name){
-                chrome.tabs.create({url : siteconf.douban + encodeURIComponent(name)});
+            site : {
+                name : 'douban',
+                replace : 'name'
             }
         },
         {
             title : 'Download with Xunlei',
-            func : function(url, name){
-                chrome.tabs.create({url : siteconf.xunlei + encodeURIComponent(url)});
+            site : {
+                name : 'xunlei',
+                replace : 'url'
             }
         },
         {
             title : 'Download with qq',
-            func : function(url, name){
-                chrome.tabs.create({url : siteconf.qq + encodeURIComponent(url)});
+            site : {
+                name : 'qq',
+                replace : 'url'
+            }
+        },
+        {
+            title : 'Search subtitle in Shooter',
+            site : {
+                name : 'shooter',
+                replace : 'name'
             }
         }
     ];
+
+    /*跳转*/
+    var jumpTo = function(info, siteUrl, r){
+        var url = info.linkUrl || info.selectionText,
+            name = info.selectionText || G.nameText;        
+        var jumpUrl = siteUrl.replace('%s', encodeURIComponent('url' == r? url : name));                
+        chrome.tabs.create({url : jumpUrl});
+    }
+
+    /*添加子菜单到主菜单*/
     items.forEach(function(item){
         chrome.contextMenus.create({
             contexts : ['all'],
             title : item.title,
             parentId : videohubContextMenusId,
             onclick : function(info, tab){
-                var url = info.linkUrl || info.selectionText;
-                var name = info.selectionText || G.nameText;
-                item.func(url, name);                
+                jumpTo(info, siteconf[item.site.name], item.site.replace);
             }
         });
     });
@@ -42,13 +68,23 @@ var videohubContextMenusId = chrome.contextMenus.create({
         parentId : videohubContextMenusId
     });
 
-    chrome.contextMenus.create({
-        contexts : ['all'],
-        parentId : videohubContextMenusId,
-        title : 'test'
-    });
+    /*自定义子菜单*/
+    siteDefault.forEach(function(item){
+        chrome.contextMenus.create({
+            contexts : ['all'],
+            title : 'Search from ' + item.name,
+            parentId : videohubContextMenusId,
+            onclick : function(info, tab){
+                jumpTo(info, item.url, item.replace);
+            }
+        });
+    });    
 });
 
-chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
-    G.nameText = request.text;
+chrome.extension.onMessage.addListener(function(message, sender, sendResponse) {
+    if (message.text){
+        G.nameText = message.text;
+    }
 });
+
+chrome.extension.sendMessage('xunlei_on_change');

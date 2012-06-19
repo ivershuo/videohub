@@ -1,19 +1,23 @@
 {
   "manifest_version": 2,
   "name" : "Videohub",
-  "version" : "0.2",  
+  "version" : "0.9",  
   "description" : "Videohub",
   "background": {    
     "scripts": ["siteconf.js", "background.js"]
   },
   "permissions" : [
-    "tabs", "*://*/*", "contextMenus"
+    "tabs", "cookies", "*://*/*", "contextMenus"
   ],
   "content_scripts": [
     {
       "matches": ["*://*/*"],
       "js": ["res/videohub_page.js"],
       "all_frames" : true
+    },
+    {
+      "matches": ["*://*.xunlei.com/*"],
+      "js": ["res/xunlei_on_change.js"]      
     }
   ],
   "options_page": "options.html"
