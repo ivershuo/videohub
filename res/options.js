@@ -17,8 +17,7 @@ document.addEventListener("DOMContentLoaded", function(){
 				}
 				sites2db.push(siteData);
 			}			
-		});
-		console.log(sites2db);
+		});		
 		localStorage.setItem('siteDatas', JSON.stringify(sites2db));
 		window.location.reload();
 	});

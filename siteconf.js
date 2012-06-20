@@ -5,35 +5,21 @@ var siteconf = {
 	'shooter' : 'http://shooter.cn/search/%s/'
 }
 
-/*更新迅雷id*/
-chrome.extension.onMessage.addListener(function(message, sender, sendResponse) {	
-	if('xunlei_on_change' == message) {
-		chrome.cookies.get({
-		    url  : siteconf.xunlei.match(/^.*?\w\//)[0],
-		    name : 'userid'
-		}, function(data){			
-		    if(data && data.value){		    	
-		        siteconf.xunlei = siteconf.xunlei.replace('%u', data.value).replace(/\d+/, data.value);
-		    } else {
-		    	siteconf.xunlei = siteconf.xunlei.replace(/\d+/, '%u');
-		    }		    
-		});
-	}
-});
-
 /*默认其他站*/
-var siteDefault = JSON.parse(localStorage.getItem('siteDatas') || '[]');
-/*
-var siteDefault = [
-	{
-		'name' : 'v.360.cn',
-		'url' : 'http://so.v.360.cn/index.php?kw=%s',
-		'replace' : 'name'
-	},
-	{
-		'name' : 'Quanloo',
-		'url' : 'http://www.quanloo.com/search?q=%s',
-		'replace' : 'name'
-	}
-]
-*/
+if (!localStorage.siteDatas) {
+	var siteDefault = [
+		{
+			'name' : 'v.360.cn',
+			'url' : 'http://so.v.360.cn/index.php?kw=%s',
+		},
+		{
+			'name' : 'Quanloo',
+			'url' : 'http://www.quanloo.com/search?q=%s',
+		},
+		{
+			'name' : 'Simplecd',
+			'url' : 'http://www.simplecd.org/?q=%s',
+		},
+	];
+	localStorage.setItem('siteDatas', JSON.stringify(siteDefault));
+};
