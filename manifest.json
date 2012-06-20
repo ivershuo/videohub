@@ -5,11 +5,11 @@
   "description" : "Videohub",
   "background": {    
     "scripts": ["siteconf.js", "background.js"]
-  },
-  "permissions" : [
+},
+"permissions" : [
     "tabs", "cookies", "*://*/*", "contextMenus"
-  ],
-  "content_scripts": [
+],
+"content_scripts": [
     {
       "matches": ["*://*/*"],
       "js": ["res/videohub_page.js"],
@@ -19,6 +19,11 @@
       "matches": ["*://*.xunlei.com/*"],
       "js": ["res/xunlei_on_change.js"]      
     }
-  ],
-  "options_page": "options.html"
+],
+"icons": {
+    "16": "res/icons/videohub_16.png", 
+    "48": "res/icons/videohub_48.png", 
+    "128": "res/icons/videohub_128.png"
+},
+"options_page": "options.html"
 }

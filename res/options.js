@@ -25,11 +25,12 @@ document.addEventListener("DOMContentLoaded", function(){
 	/*写到页面*/
 	var tmp = $('temp').value;
 	var _html = [];
-	siteDefault.forEach(function(site){
+	JSON.parse(localStorage.siteDatas || '[]').forEach(function(site){
 		var _html_li = tmp.replace('$name', site.name)
 						  .replace('$url', site.url)
 		_html.push(_html_li);
 	});
+	/*添加一行新的空表单*/
 	_html.push(tmp.replace(/\$\w+/g, ''));
 	$('sitelist').innerHTML = _html.join('');
 });

@@ -56,7 +56,7 @@ var videohubContextMenusId = chrome.contextMenus.create({
         parentId : videohubContextMenusId
     });
 
-    /*自定义子菜单*/    
+    /*自定义子菜单*/
     var createUserMenu = function(userSites){
         if(!userSites){
             return;
