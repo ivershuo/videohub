@@ -1,6 +1,8 @@
 (function(){
+	if(undefined == chrome.extension.sendMessage){
+        chrome.extension.sendMessage = chrome.extension.sendRequest
+    }            
 	chrome.extension.sendMessage({doubanloaded : true}, function(ret){
-		console.log(ret);
 		var srvUrl = ret;
 
 		var movieTitle = document.querySelectorAll('h1>span')[0].innerText,

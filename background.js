@@ -87,14 +87,17 @@ var videohubContextMenusId = chrome.contextMenus.create({
 });
 
 
-chrome.extension.onMessage.addListener(function(message, sender, sendResponse) {    
+if(undefined == chrome.extension.onMessage){
+    chrome.extension.onMessage = chrome.extension.onRequest;
+}
+chrome.extension.onMessage.addListener(function(message, sender, sendResponse) {
     /*获取链接文字*/
     var ret = '';
     if (message.text){
         G.nameText = message.text;
     }
     if (message.doubanloaded){
-        ret = S.get(apiDefault);
+        ret = S.get('apiurl');        
     }
     sendResponse(ret);
 });

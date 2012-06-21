@@ -1,8 +1,8 @@
 {
   "manifest_version": 2,
   "name" : "Videohub",
-  "version" : "0.4",  
-  "description" : "电影资源综合工具。为链接和选正文字添加右键到豆瓣、迅雷离线下载、qq旋风离线下载、射手网字幕等功能。也可以自定义其他网站搜索",
+  "version" : "0.5",  
+  "description" : "电影资源综合工具。为链接和选正文字添加右键到豆瓣、迅雷离线下载、qq旋风离线下载、射手网字幕等功能。也可以自定义其他网站搜索。添加豆瓣页面上直接在线观看及下载链接。",
   "minimum_chrome_version" : "18.0",
   "background": {    
       "scripts": ["siteconf.js", "background.js"]
