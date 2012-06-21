@@ -35,7 +35,7 @@ var videohubContextMenusId = chrome.contextMenus.create({
     var jumpTo = function(info, siteUrl){
         var url = info.linkUrl || info.selectionText,
             name = info.selectionText || G.nameText || '';        
-        var jumpUrl = siteUrl.replace('%s', encodeURIComponent(name)).replace('%l', encodeURIComponent(url)).replace('%u', G.xunleiid);        
+        var jumpUrl = siteUrl.replace('%s', encodeURIComponent(name)).replace('%l', encodeURIComponent(url));        
         chrome.tabs.create({url : jumpUrl});
     }
 
@@ -88,25 +88,8 @@ var videohubContextMenusId = chrome.contextMenus.create({
 
 /*获取链接文字*/
 chrome.extension.onMessage.addListener(function(message, sender, sendResponse) {
+    console.log(message);
     if (message.text){
         G.nameText = message.text;
     }
 });
-
-/*更新迅雷id*/
-chrome.extension.onMessage.addListener(function(message, sender, sendResponse) {    
-    if('xunlei_on_change' == message) {
-        chrome.cookies.get({
-            url  : siteconf.xunlei.match(/^.*?\w\//)[0],
-            name : 'userid'
-        }, function(data){            
-            if(data && data.value){
-                G.xunleiid = data.value;
-            } else {
-                G.xunleiid = '%u';
-            }           
-        });
-    }
-});
-
-chrome.extension.sendMessage('xunlei_on_change');

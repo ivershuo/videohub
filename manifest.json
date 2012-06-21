@@ -1,29 +1,26 @@
 {
   "manifest_version": 2,
   "name" : "Videohub",
-  "version" : "0.1",  
-  "description" : "Videohub",
+  "version" : "0.4",  
+  "description" : "电影资源综合工具。为链接和选正文字添加右键到豆瓣、迅雷离线下载、qq旋风离线下载、射手网字幕等功能。也可以自定义其他网站搜索",
+  "minimum_chrome_version" : "18.0",
   "background": {    
-    "scripts": ["siteconf.js", "background.js"]
-},
-"permissions" : [
-    "tabs", "cookies", "*://*/*", "contextMenus"
-],
-"content_scripts": [
-    {
-      "matches": ["*://*/*"],
-      "js": ["res/videohub_page.js"],
-      "all_frames" : true
-    },
-    {
-      "matches": ["*://*.xunlei.com/*"],
-      "js": ["res/xunlei_on_change.js"]      
-    }
-],
-"icons": {
-    "16": "res/icons/videohub_16.png", 
-    "48": "res/icons/videohub_48.png", 
-    "128": "res/icons/videohub_128.png"
-},
-"options_page": "options.html"
+      "scripts": ["siteconf.js", "background.js"]
+  },
+  "permissions" : [
+      "tabs", "cookies", "*://*/*", "contextMenus"
+  ],
+  "content_scripts": [
+      {
+        "matches": ["*://*/*"],
+        "js": ["res/videohub_page.js"],
+        "all_frames" : true
+      }
+  ],
+  "icons": {
+      "16": "res/icons/videohub_16.png", 
+      "48": "res/icons/videohub_48.png", 
+      "128": "res/icons/videohub_128.png"
+  },
+  "options_page": "options.html"
 }

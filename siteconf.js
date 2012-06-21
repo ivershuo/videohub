@@ -1,6 +1,6 @@
 var siteconf = {
 	'douban'  : 'http://movie.douban.com/subject_search?cat=1002&search_text=%s',
-	'xunlei'  : 'http://dynamic.lixian.vip.xunlei.com/user_task?userid=%u&furl=%l',
+	'xunlei'  : 'http://lixian.vip.xunlei.com/lixian_login.html?furl=%l',
 	'qq'      : 'http://lixian.qq.com/main.html?url=%l',
 	'shooter' : 'http://shooter.cn/search/%s/'
 }
