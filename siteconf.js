@@ -23,3 +23,9 @@ if (!localStorage.siteDatas) {
 	];
 	localStorage.setItem('siteDatas', JSON.stringify(siteDefault));
 };
+
+/*默认在线观看和下载接口地址*/
+if (!localStorage.apiurl) {
+	var apiDefault = 'http://videohub.duapp.com/douban2360?title=$title&imdb=$imdb&did=$did';
+	localStorage.setItem('apiurl', apiDefault);
+};

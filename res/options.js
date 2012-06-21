@@ -33,4 +33,11 @@ document.addEventListener("DOMContentLoaded", function(){
 	/*添加一行新的空表单*/
 	_html.push(tmp.replace(/\$\w+/g, ''));
 	$('sitelist').innerHTML = _html.join('');
+
+	/*api写到页面*/
+	$('apiurl').value = localStorage.getItem('apiurl');
+	/*存储api地址*/
+	$('submit-api').addEventListener('click', function(){
+		localStorage.setItem('apiurl', $('apiurl').value || localStorage.getItem('apiurl'));
+	});
 });

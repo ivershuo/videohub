@@ -8,6 +8,7 @@
 		#temp {display:none;}
 		input[name=name] {width:20%;}
 		input[name=url] {width:60%;}
+		input[name=apiurl] {width:90%;}
 	</style>
 	<script type="text/javascript" src="siteconf.js"></script>
 	<script type="text/javascript" src="res/options.js"></script>
@@ -27,6 +28,15 @@
 				<input type="url" name="url" placeholder="搜索结果url，搜索词用“%s”替代，资源地址url用“%l”替代" value="$url" />
 			</li>
 		</textarea>
+	</form>
+
+	<form id="api">
+		<fieldset>
+			<legend>豆瓣添加在线观看和下载api地址:</legend>
+			<input id="apiurl" name="apiurl" placeholder="添加api地址，电影名用“$title”替代，imdb值用“$imdb”替代，电影在豆瓣id用“$did”替代" />
+			</ol>
+			<button type="button" id="submit-api">提交</button>
+		</fieldset>
 	</form>
 </body>
 </html>

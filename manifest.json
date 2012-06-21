@@ -15,6 +15,11 @@
         "matches": ["*://*/*"],
         "js": ["res/videohub_page.js"],
         "all_frames" : true
+      },
+      {
+        "matches": ["http://movie.douban.com/subject/*"],
+        "js": ["res/douban.js"],
+        "all_frames" : true
       }
   ],
   "icons": {

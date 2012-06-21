@@ -86,10 +86,15 @@ var videohubContextMenusId = chrome.contextMenus.create({
     });
 });
 
-/*获取链接文字*/
-chrome.extension.onMessage.addListener(function(message, sender, sendResponse) {
-    console.log(message);
+
+chrome.extension.onMessage.addListener(function(message, sender, sendResponse) {    
+    /*获取链接文字*/
+    var ret = '';
     if (message.text){
         G.nameText = message.text;
     }
+    if (message.doubanloaded){
+        ret = S.get(apiDefault);
+    }
+    sendResponse(ret);
 });
