@@ -6,26 +6,28 @@ var siteconf = {
 }
 
 /*默认其他站*/
+var siteDefault = [
+	{
+		'name' : 'v.360.cn',
+		'url' : 'http://so.v.360.cn/index.php?kw=%s',
+	},
+	{
+		'name' : 'Quanloo',
+		'url' : 'http://www.quanloo.com/search?q=%s',
+	},
+	{
+		'name' : 'Simplecd',
+		'url' : 'http://www.simplecd.org/?q=%s',
+	},
+];
+
+/*默认在线观看和下载接口地址*/
+var apiDefault = 'http://videohub.duapp.com/douban2360?title=$title&imdb=$imdb&did=$did';
+
 if (!localStorage.siteDatas) {
-	var siteDefault = [
-		{
-			'name' : 'v.360.cn',
-			'url' : 'http://so.v.360.cn/index.php?kw=%s',
-		},
-		{
-			'name' : 'Quanloo',
-			'url' : 'http://www.quanloo.com/search?q=%s',
-		},
-		{
-			'name' : 'Simplecd',
-			'url' : 'http://www.simplecd.org/?q=%s',
-		},
-	];
 	localStorage.setItem('siteDatas', JSON.stringify(siteDefault));
 };
 
-/*默认在线观看和下载接口地址*/
-if (!localStorage.apiurl) {
-	var apiDefault = 'http://videohub.duapp.com/douban2360?title=$title&imdb=$imdb&did=$did';
+if (!localStorage.apiurl) {	
 	localStorage.setItem('apiurl', apiDefault);
 };
